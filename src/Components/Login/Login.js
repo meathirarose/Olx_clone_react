@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom'; 
 import Logo from '../../olx-logo.png';
 import './Login.css';
-import { FirebaseContext } from '../../store/FirebaseContext';
+import { FirebaseContext } from '../../store/Context';
 
 function Login() {
   const [email, setEmail] = useState('');
