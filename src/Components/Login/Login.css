@@ -35,4 +35,11 @@
     justify-content: center;
     cursor: pointer;
   }
+
+  .signup-link{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none; 
+  }
   
