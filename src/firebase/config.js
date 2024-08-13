@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCUUsvQnNXfW5NyEJqibTdl5aLOL_Q6fW0",
@@ -14,6 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
 const signup = async (username, email, phone, password) => {
   try {
@@ -40,4 +42,4 @@ const login = async (email, password) => {
     }
 }
 
-export { auth, db, signup, login };
+export { auth, db, storage, signup, login };

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 import './Header.css';
 import OlxLogo from '../../assets/OlxLogo';
@@ -66,8 +66,8 @@ function Header() {
         <div className="sellMenu">
           <SellButton></SellButton>
           <div className="sellMenuContent">
-            <SellButtonPlus></SellButtonPlus>
-            <span>SELL</span>
+            <SellButtonPlus/>
+            {user?(<Link to="/create"><span>SELL</span></Link>):(<Link to="/"><span>SELL</span></Link>)}
           </div>
         </div>
       </div>

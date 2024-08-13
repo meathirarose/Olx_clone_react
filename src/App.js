@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthContext, FirebaseContext } from './store/Context';
 import Signup from './Pages/Signup';
 import Login from './Pages/Login';
 import Home from './Pages/Home';
-import { AuthContext, FirebaseContext } from './store/Context';
+import Create from './Pages/Create';
+import ViewPost from './Pages/ViewPost';
 
 function App() {
   const { setUser } = useContext(AuthContext);
@@ -24,6 +26,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/create" element={<Create />} />
+          <Route path="/view" element={<ViewPost />} />
         </Routes>
       </Router>
     </div>

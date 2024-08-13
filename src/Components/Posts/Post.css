@@ -1,87 +1,101 @@
-.moreView {
-  margin: 16px 16px 24px;
-  padding: 16px 16px 32px;
-  background-color: #ebeeef;
-  border-radius: 4px;
+.postParentDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
 }
 
-.heading {
+.moreView, .recommendations {
+  width: calc(100% - 250px); 
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.moreView .heading, .recommendations .heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
-.heading :first-child {
+
+.moreView .heading span:first-child, .recommendations .heading span.heading-recommend {
   font-size: 24px;
   color: #002f34;
 }
 
-.heading :last-child {
+.moreView .heading span:last-child, .recommendations .heading span:last-child {
   font-size: 14px;
   color: #002f34;
 }
 
-.recommendations .cards {
+.cards {
   display: flex;
-}
-
-.moreView .cards {
-  white-space: nowrap;
-  overflow-x: scroll;
-  overflow-y: hidden;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .card {
-  margin-right: 15px;
-  padding: 13px;
-  max-width: 222px;
-  width: 222px;
-  height: 270px;
-  display: inline-block;
-  cursor: pointer;
+  padding: 12px;
+  max-width: 350px;
+  width: 280px;
+  height: 260px; 
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .card .favorite {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #fff; 
+  border-radius: 50%;
+  padding: 4px;
+  z-index: 1;
 }
 
 .card .image {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .card .image img {
-  height: 100px;
-  max-width: 100%;
-  max-height: 100%;
-  min-height: 100%;
-  text-align: center;
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
 }
+
+.card .content {
+  margin-top: 0;
+  padding: 0;
+}
+
 .card .content .rate {
-  margin-top: 10px;
-  font-size: larger;
+  font-size: 22px; 
   font-weight: bold;
+  margin: 0;
 }
+
 .card .content .kilometer {
-  font-size: medium;
+  font-size: 16px; 
+  color: #666;
+  margin: 0; 
 }
+
 .card .content .name {
-  font-size: small;
+  font-size: 12px;
+  color: #444;
+  margin: 0; 
 }
+
 .card .date {
-  display: flex;
-  justify-content: flex-end;
-  font-size: small;
-}
-
-.recommendations {
-  margin: 16px 16px 24px;
-}
-
-.recommendations .heading span {
-  font-size: 24px;
-  color: #002f34;
+  margin-top: 0;
+  font-size: 10px; 
+  text-align: right;
+  color: #888;
 }
