@@ -63,7 +63,7 @@ function Header() {
         </div>
         {/* handling user signout */}
         {user && <span onClick={handleLogout}>Logout</span>}
-        <div className="sellMenu">
+        <div className="sellMenu" >
           <SellButton></SellButton>
           <div className="sellMenuContent">
             <SellButtonPlus/>

@@ -7,17 +7,41 @@ import { FirebaseContext } from '../../store/Context';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const { login } = useContext(FirebaseContext); 
   const navigate = useNavigate(); 
 
+  const validateFields = () => {
+    if (!email) {
+      setError('Email is required');
+      return false;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setError('Email is invalid');
+      return false;
+    }
+    if (!/\S+@gmail\.com$/.test(email)) {
+      setError('Email must be a valid @gmail.com address');
+      return false;
+    }
+    if (!password) {
+      setError('Password is required');
+      return false;
+    }
+    setError('');
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await login(email, password);
-      console.log("User logged in successfully");
-      navigate('/'); 
-    } catch (error) {
-      console.error("Error during login:", error);
+    if (validateFields()) {
+      try {
+        await login(email, password);
+        console.log("User logged in successfully");
+        navigate('/');
+      } catch (error) {
+        console.error("Error during login:", error);
+      }
     }
   }
 
@@ -48,6 +72,7 @@ function Login() {
             name="password"
           />
           <br />
+          {error && <p className="error">{error}</p>}
           <br />
           <button type="submit">Login</button>
         </form>

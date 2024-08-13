@@ -5,25 +5,64 @@ import './Signup.css';
 import { FirebaseContext } from '../../store/Context';
 
 export default function Signup() {
-
   const [signState, setSignState] = useState("Sign In");
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const { signup, login } = useContext(FirebaseContext);
   const navigate = useNavigate();
 
+  const validateFields = () => {
+    if (!username) {
+      setError('Username is required');
+      return false;
+    }
+    if (!email) {
+      setError('Email is required');
+      return false;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setError('Email is invalid');
+      return false;
+    }
+    if (!/\S+@gmail\.com$/.test(email)) {
+      setError('Email must be a valid mail address');
+      return false;
+    }
+    if (!phone) {
+      setError('Phone number is required');
+      return false;
+    }
+    if (!/^\d{10}$/.test(phone)) {
+      setError('Phone number must be 10 digits');
+      return false;
+    }
+    if (!password) {
+      setError('Password is required');
+      return false;
+    }
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long');
+      return false;
+    }
+    setError('');
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await user_auth();
+    if (validateFields()) {
+      await user_auth();
+    }
   }
 
   const user_auth = async () => {
     try {
       if (signState === "Sign In") {
         await login(email, password);
-        navigate('/')
+        navigate('/');
       } else {
         await signup(username, email, phone, password);
         console.log("User signed up successfully");
@@ -83,6 +122,7 @@ export default function Signup() {
             name="password"
           />
           <br />
+          {error && <p className="error">{error}</p>}
           <br />
           <button type="submit" onClick={() => { setSignState("Sign Up") }}>Signup</button>
         </form>
