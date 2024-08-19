@@ -14,6 +14,7 @@ export default function Signup() {
   const { signup, login } = useContext(FirebaseContext);
   const navigate = useNavigate();
 
+
   const validateFields = () => {
     if (!username) {
       setError('Username is required');

@@ -23,7 +23,7 @@ function View() {
             setUserDetails(userDoc.data()); 
             console.log("User details fetched:", userDoc.data());
           } else {
-            console.log("No matching user found for userId:", postDetails.userId);
+            console.log("No matching user found for userId:", postDetails?.userId);
           }
         }
       } catch (error) {
